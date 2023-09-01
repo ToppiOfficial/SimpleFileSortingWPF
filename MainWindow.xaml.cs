@@ -168,6 +168,10 @@ namespace SimpleFileSortingWPF
                                         string[] folderpath = Directory.GetFiles(dir.mName);
                                         foreach (string file in folderpath)
                                         {
+                                            if ((File.GetAttributes(file) & FileAttributes.Hidden) == FileAttributes.Hidden)
+                                            {
+                                                continue;
+                                            }
                                             string fileType = Path.GetExtension(file);
                                             foreach (c_format formats in FormatData.Formats.mFormats)
                                             {
@@ -188,8 +192,13 @@ namespace SimpleFileSortingWPF
                                     if (dir.SortDefaultSelection.Contains("byDate"))
                                     {
                                         string[] folderpath = Directory.GetFiles(dir.mName);
-                                        foreach(string file in folderpath)
+                                        foreach (string file in folderpath)
                                         {
+                                            if ((File.GetAttributes(file) & FileAttributes.Hidden) == FileAttributes.Hidden)
+                                            {
+                                                continue;
+                                            }
+
                                             DateTime creationTime = File.GetCreationTime(file);
                                             string formattedDate = creationTime.ToString(FormatData.AppSetting.SelectedDateFormat);
                                             string NewFolder = Path.Combine(dir.mName, formattedDate);
