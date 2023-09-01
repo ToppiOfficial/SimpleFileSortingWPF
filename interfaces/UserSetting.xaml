@@ -84,6 +84,7 @@
                             <TextBox x:Name="txtbCategoryName"
                                           Style="{StaticResource Commontxtbox1}"
                                           Height="30"
+                                     KeyDown="txtbCategoryName_KeyDown"
                                           Padding="0,5,0,5"
                                           Width="320"/>
                         </StackPanel>
@@ -123,6 +124,7 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto"/>
                                         <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
                                     </Grid.ColumnDefinitions>
 
                                     <Button Margin="5,0,5,0"
@@ -135,13 +137,34 @@
                                             Click="MenuBtn_Click"
                                             FontWeight="Normal"/>
 
-                                    <TextBlock Grid.Column="1"
+                                    <Button Margin="5,0,5,0"
+                                            Content="Edit Name"
+                                            Padding="10,0,10,0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Width="auto" Height="auto"
+                                            Grid.Column="1"
+                                            Name="btnEditName"
+                                            Click="MenuBtn_Click"
+                                            FontWeight="DemiBold"/>
+
+                                    <TextBox Style="{StaticResource Commontxtbox1}"
+                                             Visibility="Collapsed"
+                                             Width="100"
+                                             Margin="5,0,5,0"
+                                             Height="auto"
+                                             Grid.Column="1"
+                                             Name="txtbEditName"
+                                             KeyDown="txtbEditName_KeyDown"/>
+
+                                    <TextBlock Grid.Column="2"
                                                VerticalAlignment="Center">
                                                <Run Text="Folder Name: '"
                                                FontWeight="DemiBold"
                                                Foreground="Gray"/>
                                                <Run Text="{Binding mName}"/>
                                                <Run Text="'"
+                                               Name="txtblockDataName"
                                                FontWeight="DemiBold"
                                                Foreground="Gray"/>
                                     </TextBlock>
@@ -170,9 +193,10 @@
                                  Style="{StaticResource Commontxtbox1}"
                                  Height="30"
                                  Padding="0,5,0,5"
+                                 KeyDown="txtbTypeName_KeyDown"
                                  Width="320"/>
                     </StackPanel>
-                    <TextBlock Text="Note: Simple input the file type without the dot. Example: pdf, docx, exe)"
+                    <TextBlock Text="Note: Simply input the file type without the dot. Example: pdf, docx, exe)"
                                HorizontalAlignment="Center"
                                Style="{StaticResource Commontxtb1}"/>
                 </StackPanel>

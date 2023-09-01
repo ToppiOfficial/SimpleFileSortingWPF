@@ -115,6 +115,20 @@ namespace SimpleFileSortingWPF.interfaces
                         FormatData.Formats.SaveFormatsToJson();
                     }
                     break;
+                case "btnEditName":
+                    Button btnEditName = sender as Button;
+                    Grid parentGrid = btnEditName.Parent as Grid;
+                    TextBox txtbEditName = parentGrid.FindName("txtbEditName") as TextBox;
+                    c_format selecteddata = txtbEditName.DataContext as c_format;
+
+                    if (txtbEditName != null)
+                    {
+                        txtbEditName.Visibility = Visibility.Visible;
+                        txtbEditName.Text = selecteddata.mName;
+                        txtbEditName.Focus();
+                        btnEditName.Visibility = Visibility.Collapsed;
+                    }
+                    break;
             }
         }
 
@@ -163,6 +177,59 @@ namespace SimpleFileSortingWPF.interfaces
                 selectedformat = (c_format)lstboxFileFormats.SelectedItem;
                 lstboxFileFormatsTypes.ItemsSource = selectedformat.mTypes;
                 stkpanelFormatType.IsEnabled = true;
+            }
+        }
+
+        private void txtbCategoryName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                RoutedEventArgs routedEventArgs = new RoutedEventArgs();
+                btnAddCategory_Click(sender, routedEventArgs);
+            }
+        }
+
+        private void txtbTypeName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                RoutedEventArgs routedEventArgs = new RoutedEventArgs();
+                btnAddType_Click(sender, routedEventArgs);
+            }
+        }
+
+        public void txtbEditName_KeyDown(object sender, KeyEventArgs e)
+        {
+            TextBox textbox = sender as TextBox;
+            Grid parentGrid = textbox.Parent as Grid;
+            Button button = parentGrid.FindName("btnEditName") as Button;
+
+            if (e.Key == Key.Enter)
+            {
+                if(!string.IsNullOrEmpty(textbox.Text))
+                {
+                    try
+                    {
+                        Grid grid = textbox.Parent as Grid;
+                        c_format selecteddata = textbox.DataContext as c_format;
+
+                        selecteddata.mName = textbox.Text;
+                        textbox.Text = string.Empty;
+                        textbox.Visibility = Visibility.Collapsed;
+                        button.Visibility = Visibility.Visible;
+
+                        FormatData.Formats.SaveFormatsToJson();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                else
+                {
+                    textbox.Visibility = Visibility.Collapsed;
+                    button.Visibility = Visibility.Visible;
+                }
             }
         }
     }
