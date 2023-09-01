@@ -1,4 +1,4 @@
-![image](https://github.com/ToppiOfficial/SimpleFileSortingWPF/assets/75457657/c5bcf80b-b2a4-4d97-ab5c-263d389255d4)# SimpleFileSortingWPF
+# SimpleFileSortingWPF
 
 A WPF version of SimpleFileSorting. This is also the updated and more polished version of that tool with a different interface, more date format and a more clean design overall
 
