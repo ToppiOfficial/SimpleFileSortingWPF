@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SimpleFileSortingWPF.settings" GeneratedClassName="w_appsetting">
+  <Profiles />
+  <Settings>
+    <Setting Name="DelPathOnSort" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="IncludePathOnAdd" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DateFormat" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;string&gt;yyyy-MM&lt;/string&gt;
+  &lt;string&gt;yy-MM&lt;/string&gt;
+  &lt;string&gt;MM-yyyy&lt;/string&gt;
+  &lt;string&gt;MM-yy&lt;/string&gt;
+  &lt;string&gt;yyyy&lt;/string&gt;
+  &lt;string&gt;MMMM-yyyy&lt;/string&gt;
+  &lt;string&gt;yyyy-MMMM&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="SelectedDateFormat" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>
