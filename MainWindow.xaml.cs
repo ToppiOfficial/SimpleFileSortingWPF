@@ -98,6 +98,12 @@ namespace SimpleFileSortingWPF
                         {
                             string selectedFolder = System.IO.Path.GetDirectoryName(folderDialog.FileName);
                             bool directoryExists = FormatData.Formats.DirPaths.Any(dirPath => dirPath.mName == selectedFolder);
+                            if (IsSystemOrCoreLocation(selectedFolder))
+                            {
+                                MessageBox.Show("Selected directory is a system or core location. Please choose a different directory.");
+                                return;
+                            }
+
 
                             if (directoryExists)
                             {
@@ -241,6 +247,18 @@ namespace SimpleFileSortingWPF
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FormatData.Formats.SaveDirPathsToJson();
+        }
+
+        public bool IsSystemOrCoreLocation(string path)
+        {
+            string[] systemPaths = new string[]
+            {
+                @"C:\Program Files",
+                @"C:\Program Files (x86)",
+                @"C:\Windows"
+            };
+
+            return systemPaths.Any(systemPath => path.StartsWith(systemPath, StringComparison.OrdinalIgnoreCase));
         }
     }
 }
