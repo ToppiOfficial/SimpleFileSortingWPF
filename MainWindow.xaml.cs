@@ -17,7 +17,7 @@ namespace SimpleFileSortingWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        const string appbuild = "1.0.0";
+        const string appbuild = "1.0.1";
 
         public PrimaryViewModel FormatData = new PrimaryViewModel();
         private bool isSettingWindowOpen = false;
@@ -30,6 +30,9 @@ namespace SimpleFileSortingWPF
 
             FormatData.Formats.LoadDirPathsFromJson();
             DataContext = FormatData;
+
+            UserSetting checkinstsance = new UserSetting();
+            checkinstsance.Close();
         }
 
         public w_appsetting GetSetting()

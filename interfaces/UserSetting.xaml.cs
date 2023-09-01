@@ -103,6 +103,8 @@ namespace SimpleFileSortingWPF.interfaces
                     if (result == MessageBoxResult.Yes)
                     {
                         FormatData.Formats.mFormats.Remove(formats);
+                        stkpanelFormatType.IsEnabled = false;
+                        lstboxFileFormatsTypes.ItemsSource = null;
                         FormatData.Formats.SaveFormatsToJson();
                     }
                     break;
