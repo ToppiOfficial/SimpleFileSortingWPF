@@ -40,6 +40,16 @@ namespace SimpleFileSortingWPF.interfaces
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
+            foreach(c_format Data in FormatData.Formats.mFormats)
+            {
+                if(Data.mTypes.Count == 0)
+                {
+                    MessageBox.Show("A Category cannot be empty");
+                    e.Cancel = true;
+                    return;
+                }
+            }
+
             lstboxFileFormatsTypes.SelectedIndex = -1;
             mainWindow.FormatData.AppSetting.Save();
             mainWindow.Focus();
@@ -61,6 +71,14 @@ namespace SimpleFileSortingWPF.interfaces
                         mName = txtbCategoryName.Text
                     };
 
+                    foreach(c_format Data in FormatData.Formats.mFormats)
+                    {
+                        if(Data.mName.Contains(newdata.mName))
+                        {
+                            MessageBox.Show("That Category already exists, please name it differently");
+                            return;
+                        }
+                    }
 
                     FormatData.Formats.mFormats.Add(newdata);
                     FormatData.Formats.SaveFormatsToJson();

@@ -104,7 +104,6 @@ namespace SimpleFileSortingWPF
                                 return;
                             }
 
-
                             if (directoryExists)
                             {
                                 MessageBox.Show("Directory already listed");
@@ -142,6 +141,11 @@ namespace SimpleFileSortingWPF
                     if(FormatData.Formats.DirPaths.Count == 0)
                     {
                         MessageBox.Show("Add a directory first");
+                        break;
+                    }
+                    if(FormatData.AppSetting.SelectedDateFormat == string.Empty || FormatData.Formats.mFormats.Count == 0)
+                    {
+                        MessageBox.Show("Please configure through the user settings first");
                         break;
                     }
                     MessageBoxResult resultsort = MessageBox.Show("Are you sure you want to sort all checked directories?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
