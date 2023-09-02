@@ -6,10 +6,9 @@
         xmlns:local="clr-namespace:SimpleFileSortingWPF.interfaces"
         xmlns:viewmodel="clr-namespace:SimpleFileSortingWPF.models"
         mc:Ignorable="d"
-        Title="UserSetting" Height="auto" Width="550"
+        Title="UserSetting" Height="800" Width="550" MinHeight="800" MinWidth="550"
         WindowStartupLocation="CenterScreen"
         WindowState="Normal"
-        ResizeMode="CanMinimize"
         Closing="MainWindow_Closing">
 
     <Grid Background="#303030">
@@ -201,7 +200,7 @@
                                Style="{StaticResource Commontxtb1}"/>
                 </StackPanel>
 
-                <Grid Grid.Row="3" Height="200">
+                <Grid Grid.Row="3" Height="auto">
                     <ListBox Name="lstboxFileFormatsTypes"      
                              Margin="10"
                              BorderThickness="0"

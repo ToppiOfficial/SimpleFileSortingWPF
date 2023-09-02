@@ -17,7 +17,7 @@ namespace SimpleFileSortingWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        const string appbuild = "1.0.1";
+        const string appbuild = "1.0.2";
 
         public PrimaryViewModel FormatData = new PrimaryViewModel();
         private bool isSettingWindowOpen = false;
@@ -275,6 +275,14 @@ namespace SimpleFileSortingWPF
             };
 
             return systemPaths.Any(systemPath => path.StartsWith(systemPath, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (settingWindowInstance != null && settingWindowInstance.IsVisible)
+            {
+                settingWindowInstance.Close();
+            }
         }
     }
 }
