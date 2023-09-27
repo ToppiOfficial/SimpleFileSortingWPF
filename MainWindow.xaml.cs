@@ -17,7 +17,7 @@ namespace SimpleFileSortingWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        const string appbuild = "1.0.2";
+        const string appbuild = "1.0.3";
 
         public PrimaryViewModel FormatData = new PrimaryViewModel();
         private bool isSettingWindowOpen = false;
@@ -183,8 +183,27 @@ namespace SimpleFileSortingWPF
                                                         string NewFolder = Path.Combine(dir.mName, formats.mName);
                                                         Directory.CreateDirectory(NewFolder);
                                                         string NewDest = Path.Combine(NewFolder, Path.GetFileName(file));
-                                                        File.Move(file, NewDest);
+
+                                                        if (File.Exists(NewDest))
+                                                        {
+                                                            MessageBoxResult overwriteresult = MessageBox.Show($"File {Path.GetFileName(file)} already exists. Do you want to overwrite it?", "File Exists", MessageBoxButton.YesNo);
+
+                                                            if (overwriteresult == MessageBoxResult.Yes)
+                                                            {
+                                                                File.Delete(NewDest);
+                                                                File.Move(file, NewDest);
+                                                            }
+                                                            else
+                                                            {
+                                                                continue;
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            File.Move(file, NewDest);
+                                                        }
                                                     }
+
                                                 }
                                             }
                                         }
@@ -203,8 +222,26 @@ namespace SimpleFileSortingWPF
                                             string formattedDate = creationTime.ToString(FormatData.AppSetting.SelectedDateFormat);
                                             string NewFolder = Path.Combine(dir.mName, formattedDate);
                                             string NewDest = Path.Combine(NewFolder, Path.GetFileName(file));
-                                            Directory.CreateDirectory(NewFolder);
-                                            File.Move(file, NewDest);
+
+                                            if (File.Exists(NewDest))
+                                            {
+                                                MessageBoxResult overwriteresult = MessageBox.Show($"File {Path.GetFileName(file)} already exists. Do you want to overwrite it?", "File Exists", MessageBoxButton.YesNo);
+
+                                                if (overwriteresult == MessageBoxResult.Yes)
+                                                {
+                                                    File.Delete(NewDest);
+                                                    File.Move(file, NewDest);
+                                                }
+                                                else
+                                                {
+                                                    continue;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                Directory.CreateDirectory(NewFolder);
+                                                File.Move(file, NewDest);
+                                            }
                                         }
                                     }
                                 }
