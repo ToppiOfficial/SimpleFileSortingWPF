@@ -17,7 +17,7 @@ namespace SimpleFileSortingWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        const string appbuild = "1.0.3";
+        const string appbuild = "1.0.4";
 
         public PrimaryViewModel FormatData = new PrimaryViewModel();
         private bool isSettingWindowOpen = false;
@@ -90,7 +90,8 @@ namespace SimpleFileSortingWPF
                 case "BtnAddDir":
                     var folderDialog = new OpenFileDialog
                     {
-                        FileName = "Select a folder",
+                        // This is stupid, do I even have a choice?
+                        FileName = "[Select a folder]",
                         CheckFileExists = false,
                         CheckPathExists = true
                     };
@@ -154,6 +155,10 @@ namespace SimpleFileSortingWPF
                     MessageBoxResult resultsort = MessageBox.Show("Are you sure you want to sort all checked directories?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                     if (resultsort == MessageBoxResult.Yes)
                     {
+                        /*
+                         *  I should really try a better approach but this will work for now.
+                         *  TODO: Simplify this so in future changes, I won't tear a single strand of hair.
+                        */
                         try
                         {
                             int datacount = FormatData.Formats.DirPaths.Count;
@@ -304,6 +309,10 @@ namespace SimpleFileSortingWPF
 
         public bool IsSystemOrCoreLocation(string path)
         {
+            /*
+             * Not sure if this is really necessary, but I'll keep it here
+             * just in case if it is necessary.
+            */
             string[] systemPaths = new string[]
             {
                 @"C:\Program Files",
